@@ -21,4 +21,23 @@
 class Enteros:
     def __init__(self,numero):
         self.number=numero
-        print(type(self.number))
+        self.rom = ""
+
+    def convertir_Rom(self):        
+        if self.number == 1:
+            self.rom = "I"
+        if self.number == 5:
+            self.rom = "V"
+        if self.number == 10:
+            self.rom = "X"
+        if self.number == 50:
+            self.rom = "L"
+        if self.number == 100:
+            self.rom = "C"
+        if self.number == 500:
+            self.rom = "D"
+        if self.number == 1000:
+            self.rom = "M"
+        
+        return self.rom
+        
