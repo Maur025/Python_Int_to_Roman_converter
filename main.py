@@ -6,7 +6,7 @@ valor = input("ingresa un numero: ")
 try:
     valor = int(valor)
     a = Ent_rom.Enteros(valor)
-    print(a.convertir_Rom())
+    a.conver_Romanos()
 
 except:
     print("es un string")

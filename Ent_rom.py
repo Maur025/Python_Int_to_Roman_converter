@@ -22,22 +22,77 @@ class Enteros:
     def __init__(self,numero):
         self.number=numero
         self.rom = ""
+        self.res = 0
+        self.ret = ""
+        self.listnum = list(range(0,len(str(self.number))))#declaracion de la lista
+        #podria ser innecesario pero lo dejare por un tiempo 
 
-    def convertir_Rom(self):        
-        if self.number == 1:
-            self.rom = "I"
-        if self.number == 5:
-            self.rom = "V"
-        if self.number == 10:
-            self.rom = "X"
-        if self.number == 50:
-            self.rom = "L"
-        if self.number == 100:
-            self.rom = "C"
-        if self.number == 500:
-            self.rom = "D"
-        if self.number == 1000:
-            self.rom = "M"
+    def conver_Romanos(self):
+        c = 0
+        ann = 1
+        while self.number > 0: #while para desarmar el numero
+            self.res = self.number % 10 #obteniendo el residuo del numero 
+            self.listnum[c] = self.res#lo añado a una lista, podria ser innecesario
+            self.number = self.number // 10#divido el valor para no quedar en un loop infinito
+            c = c + 1#contador para la lista, podria ser innecesario
+            self.convertir_dic(self.res * ann)#envia un valor para comparacion a la funcion
+            #para evitar errores en cada iteracion se le multiplica por diez ej.
+            # si el valor es 521 primero enviara el 1 a comparar, luego se enviara 20 a comparar
+            #y por ultimo el valor de 500
+            self.ret =self.rom + self.ret #arma el resultado de derecha a izquierda           
+            ann = ann * 10 #multiplicador  para obtener valores como 10 o 500 etc
+
+
+        print(self.ret)
+        print(self.listnum)
+
+
+
+
+    def convertir_dic(self,xnum):   
+        tal =0  
+        if xnum == 0:
+            self.rom = ""   
+        if xnum >= 1 and xnum <= 3:
+            self.rom = "I"*xnum
+        else: 
+            if xnum == 4:
+                self.rom = "IV"
+        if xnum >= 5 and xnum <= 8:
+            tal=xnum - 5
+            self.rom = "V" + "I"*tal
+        else:
+            if xnum == 9:
+                self.rom = "IX"
+        if xnum >= 10 and xnum<=30 :
+            tal = xnum // 10
+            self.rom = "X" * tal
+        else:
+            if xnum == 40:
+                self.rom ="XL"
+        if xnum >= 50 and xnum <= 80:
+            tal = xnum - 50
+            tal = tal // 10
+            self.rom = "L" + "X" * tal
+        else:
+            if xnum ==90:
+                self.rom = "XC"
+        if xnum >= 100 and xnum <=300:
+            tal = xnum //100
+            self.rom = "C" * tal
+        else:
+            if xnum == 400:
+                self.rom = "CD"
+        if xnum >= 500 and xnum <= 800:
+            tal = xnum - 500
+            tal = tal // 100
+            self.rom = "D" + "C" * tal
+        else:
+            if xnum == 900:
+                self.rom = "CM"
+        if xnum >= 1000 and xnum <= 3000:
+            tal =xnum // 1000
+            self.rom = "M" * tal
         
         return self.rom
         
