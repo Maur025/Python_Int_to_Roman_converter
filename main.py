@@ -9,5 +9,6 @@ try:
     a.conver_Romanos()
 
 except:
-    print("es un string")
-    Rom_ent.Letras(valor)
+    #print("es un string")
+    a = Rom_ent.Letras(valor)
+    a.convertir()
